@@ -4,6 +4,8 @@ import Room from './Room';
 import Header from "./Header"
 import Function from "./Function"
 import db from "./firebase"
+// import { selectThemeId } from './features/themeSlice';
+import { useSelector } from "react-redux"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,16 +31,19 @@ const useStyles = makeStyles((theme) => ({
 function Lobby() {
     const classes = useStyles();
     const [rooms, setRooms] = useState([]);
-
+    // const themeId = useSelector(selectThemeId)
+    // console.log(selectThemeId)
     useEffect(() => {
-        db.collection('rooms').onSnapshot((snapshot) => 
-            setRooms(
-                snapshot.docs.map((doc) => ({
-                    id: doc.id,
-                    data: doc.data(),
-                }))
-            )
-        );
+        // if(themeId){
+            db.collection('rooms').onSnapshot((snapshot) => 
+                setRooms(
+                    snapshot.docs.map((doc) => ({
+                        id: doc.id,
+                        data: doc.data(),
+                    }))
+                )
+            );
+        // }
     }, [])
 
     //get hours and minutes
@@ -48,8 +53,6 @@ function Lobby() {
 
     return (
         <div className={classes.root}>
-            <Header />
-            <Function />
             <Grid container spacing={3}>
                 {rooms.map(({id, data: { roomName, roomScale} }) => (
                 <Grid item xs={6}>

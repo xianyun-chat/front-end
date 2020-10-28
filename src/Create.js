@@ -41,7 +41,7 @@ function Create() {
     }
     return (
         <div>
-            <Link to="./option_room">
+            <Link to="/lobby">
                 <Button variant="contained" color="default" className={classes.btn_back} >
                   <ArrowBackIcon /> 
                 </Button>

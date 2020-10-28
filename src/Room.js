@@ -70,7 +70,7 @@ function Room({ id,name,image,scale,hours,mins,boom,noEntry,entry }) {
                     }
                 </div>
                 <img className="" src={image} alt="" />
-                <Link to="/Chat" className={classes.link}  >
+                <Link to="/chat" className={classes.link}  >
                 <Button variant="contained" color="primary" disableElevation onClick={joinInRoom,shot} disabled={noEntry}>
                     {entry}
                 </Button>

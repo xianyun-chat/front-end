@@ -45,7 +45,7 @@ function Function() {
               variant="standard"
             />
           </div>
-          <Link to="./Create">
+          <Link to="/create">
             <Fab color="secondary" aria-label="add" className={classes.fabButton}>
                 <AddIcon />
             </Fab>

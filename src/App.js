@@ -5,14 +5,12 @@ import { logout, selectUser, login} from "./features/userSlice"
 import Login from "./Login"
 import {auth} from "./firebase"
 import {BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Home from "./Home"
+import Theme from "./Theme"
 import Header from "./Header"
 import Lobby from './Lobby';
+import Function from "./Function"
 import Create from "./Create"
 import Chat from "./Chat"
-// import Option_room from './option_room';
-// import Search from './Search';
-// import Create_room from './Create_room';
 
 function App() {
   const user = useSelector(selectUser);
@@ -36,27 +34,33 @@ function App() {
       }
     });
   }, []);
+  
   return (
-    <Router>
+    <Router >
       <div className="app">
-        {user ?  
-          ( <Switch>
-              <Route path="/Create">
-                <Create />
-              </Route>
-              <Route path="/Chat">
-                <Chat />
-              </Route>
-              <Route path="/">
-                {/* <Header />
-                <Home /> */}
-                <Lobby />
-                {/* <Imessage /> */}
-              </Route>
-            </Switch> 
-          ) : <Login />
-        }
-      </div> 
+          {user ?  
+            (  
+            <Switch>
+                <Route extra path="/">
+                  <Theme />
+                  <Header />
+                  <Function />
+                  <Lobby />
+                </Route>
+                <Route path="/lobby" >
+                </Route>
+                <Route path="/create">
+                  <Create />
+                </Route>
+                <Route path="/chat">
+                  <Chat />
+                </Route>
+              </Switch>
+   )  
+:  
+<Login />
+}
+        </div> 
     </Router>
   );
 }
