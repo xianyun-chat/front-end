@@ -26,7 +26,7 @@ function Chat() {
            db.collection("rooms")
             .doc(roomId) 
             .collection("messages") 
-            .orderBy("timestamp", "asc")
+            .orderBy("timestamp", "desc")
             .onSnapshot((snapshot) => 
                 setMessages(
                     snapshot.docs.map((doc) => ({
@@ -58,7 +58,7 @@ function Chat() {
         <div className="chat">
             {/* chat header */}
             <div className="chat_header">
-                <Link to="./option_room">
+                <Link to="./lobby">
                     <Button variant="contained" color="default" >
                         <ArrowBackIcon /> 
                     </Button>

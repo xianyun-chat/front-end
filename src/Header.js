@@ -8,6 +8,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import { selectUser } from './features/userSlice';
 import { useSelector} from "react-redux"
 import { auth } from "./firebase"
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -28,13 +29,15 @@ function Header() {
     return (
         <AppBar position="static">
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
-          </IconButton>
+          <Link to="/">
+            <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+              <MenuIcon />
+            </IconButton> 
+          </Link> 
           <Typography variant="h6" className={classes.title}>
             News
           </Typography>
-          <Avatar onClick={() => auth.signOut()} src={user.photo} className="sidebar_avatar"/>
+          <Avatar className="sidebar_avatar" onClick={() => auth.signOut()} src={user.photo} />
         </Toolbar>
       </AppBar>
     )

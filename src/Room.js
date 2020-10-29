@@ -21,10 +21,10 @@ const useStyles = makeStyles((theme) => ({
 function Room({ id,name,image,scale,hours,mins,boom,noEntry,entry }) {
     const classes = useStyles()
     const dispatch = useDispatch();
-    const [numberInRoom, setNumberInRomm] = useState(1)
-
+    const [numberInRoom, setNumberInRoom] = useState(1)
+    
     const joinInRoom = () => {
-        setNumberInRomm(numberInRoom + 1)
+        setNumberInRoom(numberInRoom + 1)
     }
     const shot = () => {
         dispatch(
@@ -40,6 +40,7 @@ function Room({ id,name,image,scale,hours,mins,boom,noEntry,entry }) {
     } else {
         boom = 1
     }
+
     if(numberInRoom < scale) {
         noEntry = false
         entry = "加入聊天室"

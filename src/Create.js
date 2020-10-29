@@ -5,6 +5,8 @@ import Button from '@material-ui/core/Button'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { Link } from "react-router-dom"
 import db from "./firebase"
+import {selectThemeId} from "./features/themeSlice"
+import { useSelector } from "react-redux"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,11 +31,13 @@ const useStyles = makeStyles((theme) => ({
 function Create() {
     const classes = useStyles();
       // Create chat room..
+    const themeId = useSelector(selectThemeId)
+    
     const createRoom = () => {
         const roomName = document.getElementById("standard-basicpOne")
         const roomScale = document.getElementById("standard-basicTwo")
         
-        db.collection('rooms').add ({
+        db.collection('theme').doc(themeId).collection('rooms').add ({
             roomName: roomName.value,
             roomScale: roomScale.value
         })

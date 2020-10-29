@@ -5,14 +5,16 @@ import { logout, selectUser, login} from "./features/userSlice"
 import Login from "./Login"
 import {auth} from "./firebase"
 import {BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Theme from "./Theme"
+import Home from "./Home"
 import Header from "./Header"
 import Lobby from './Lobby';
 import Function from "./Function"
 import Create from "./Create"
 import Chat from "./Chat"
 
+
 function App() {
+  
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
 
@@ -34,20 +36,18 @@ function App() {
       }
     });
   }, []);
-  
   return (
     <Router >
       <div className="app">
-          {user ?  
-            (  
-            <Switch>
-                <Route extra path="/">
-                  <Theme />
+          {user ?   
+             ( 
+               <Switch>
+                <Route path="/" exact>
                   <Header />
-                  <Function />
-                  <Lobby />
+                  <Home />
                 </Route>
                 <Route path="/lobby" >
+                  <Lobby />
                 </Route>
                 <Route path="/create">
                   <Create />
@@ -55,11 +55,10 @@ function App() {
                 <Route path="/chat">
                   <Chat />
                 </Route>
-              </Switch>
-   )  
-:  
-<Login />
-}
+              </Switch> )  
+          :  
+          <Login />
+          }
         </div> 
     </Router>
   );
