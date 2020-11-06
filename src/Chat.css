@@ -17,10 +17,18 @@
 .chat_header > h4 {
     font-weight: 500;
     color: gray;
+    text-align: center;
+
 }
 
 .chat_name {
     color: black;
+    align-items: center;
+}
+
+.chat_messages {
+    flex: 1; 
+    overflow: scroll;
 }
 
 .chat_input {
@@ -33,11 +41,6 @@
 
 .chat_input > form {
     flex: 1;
-}
-
-.chat_messages {
-    flex: 1; 
-    overflow: scroll;
 }
 
 .chat_input > form > input {

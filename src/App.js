@@ -11,6 +11,8 @@ import Lobby from './Lobby';
 import Function from "./Function"
 import Create from "./Create"
 import Chat from "./Chat"
+import SignUp from './SignUp';
+import ChangePW from './ChangePw';
 
 
 function App() {
@@ -23,8 +25,9 @@ function App() {
       if(authUser) {
         // user is logged in
         dispatch (
+          // get users' information
           login({
-            uid:authUser.uid,
+            uid: authUser.uid,
             photo: authUser.photoURL,
             email: authUser.email,
             displayName: authUser.displayName,
@@ -39,10 +42,11 @@ function App() {
   return (
     <Router >
       <div className="app">
-          {user ?   
-             ( 
                <Switch>
                 <Route path="/" exact>
+                  <Login />
+                </Route>
+                <Route path="/home">
                   <Header />
                   <Home />
                 </Route>
@@ -55,10 +59,13 @@ function App() {
                 <Route path="/chat">
                   <Chat />
                 </Route>
-              </Switch> )  
-          :  
-          <Login />
-          }
+                <Route path="/signUp" >
+                  <SignUp />
+                </Route>
+                <Route path="/changepw">
+                  <ChangePW />
+                </Route>
+              </Switch> 
         </div> 
     </Router>
   );

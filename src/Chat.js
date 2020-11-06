@@ -1,5 +1,5 @@
 import { IconButton } from '@material-ui/core';
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, Children} from 'react'
 import "./Chat.css"
 import MicNoneIcon from "@material-ui/icons/MicNone"
 import Message from "./Message"
@@ -26,7 +26,7 @@ function Chat() {
            db.collection("rooms")
             .doc(roomId) 
             .collection("messages") 
-            .orderBy("timestamp", "desc")
+            .orderBy("timestamp", "asc")
             .onSnapshot((snapshot) => 
                 setMessages(
                     snapshot.docs.map((doc) => ({
@@ -70,7 +70,7 @@ function Chat() {
 
             <div className="chat_messages">
                 <FlipMove>
-                    {messages.map(({ id, data}) => (
+                    {messages.map(({ id, data}) => Children.toArray(
                         <Message key={id}  contents={data} />
                     ))}
                 </FlipMove>

@@ -29,15 +29,17 @@ function Header() {
     return (
         <AppBar position="static">
         <Toolbar>
-          <Link to="/">
+          <Link to="/home">
             <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
               <MenuIcon />
             </IconButton> 
           </Link> 
           <Typography variant="h6" className={classes.title}>
-            News
+            Chat
           </Typography>
-          <Avatar className="sidebar_avatar" onClick={() => auth.signOut()} src={user.photo} />
+          <Link to="/">
+            <Avatar className="sidebar_avatar" onClick={() => auth.signOut()} src={user.photo} />
+          </Link>
         </Toolbar>
       </AppBar>
     )

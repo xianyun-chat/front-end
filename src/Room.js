@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, Children} from 'react';
 import { Link } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -14,6 +14,8 @@ const useStyles = makeStyles((theme) => ({
     },
     boom: {
         display: "flex",
+        textAlign: 'center',
+        justifyContent: 'center',
     },
    
 }))
@@ -60,12 +62,12 @@ function Room({ id,name,image,scale,hours,mins,boom,noEntry,entry }) {
                 <p className="room_scale">
                     在线人数： {numberInRoom}/{scale}
                 </p>
-                <p className="create_time">
+                {/* <p className="create_time">
                     {hours} : {mins}
-                </p>
+                </p> */}
                 <div className={classes.boom}>
                     {
-                        Array(boom).fill().map((_) => (
+                        Array(boom).fill().map((_) => Children.toArray(
                             <p>🔥</p>
                         ))
                     }

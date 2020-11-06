@@ -16,6 +16,12 @@
     margin-right: auto;
 }
 
+/* .chat_name {
+    color: gray;
+    position: absolute;
+    font-size: 8px;
+} */
+
 .message > small {
     color: gray;
     position: absolute;

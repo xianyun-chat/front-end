@@ -5,7 +5,7 @@ import {  setTheme } from "./features/themeSlice"
 import { useDispatch } from "react-redux"
 import { Button }from "@material-ui/core"
 import db from "./firebase"
-
+import {login} from './post/password'
 
 function Home() {
     const dispatch = useDispatch()
@@ -14,39 +14,41 @@ function Home() {
     const traceThemeIdOne = () => {
         dispatch(
             setTheme({
-                themeId: "1",
+                themeId: "food",
             })
         )
     }
     const traceThemeIdTwo = () => {
         dispatch(
             setTheme({
-                themeId: "2",
+                themeId: "clothing",
             })
         )
     }
     const traceThemeIdThree = () => {
         dispatch(
             setTheme({
-                themeId: "3",
+                themeId: "go",
             })
         )
     }
     const traceThemeIdFour = () => {
         dispatch(
             setTheme({
-                themeId: "4",
+                themeId: "home",
             })
         )
     }
     const traceThemeIdFive = () => {
         dispatch(
             setTheme({
-                themeId: "5",
+                themeId: "entrainment",
             })
         )
     }
     useEffect(() => {
+
+        //DB
         db.collection('theme').onSnapshot((snapshot) => 
             setThemes(
                 snapshot.docs.map((doc) => ({
@@ -58,6 +60,15 @@ function Home() {
 
     return (
         <div className="home_body">
+
+                <Button onClick={() => {
+                    login('123456', '888888', (result) => {
+                        if (result === true) {
+                            window.location.href = 'http://localhost:3000/lobby'
+                        }
+                        // else {} // 给用户一个警告
+                    }) 
+                }}>接口测试</Button>
 
                 <Link to="/lobby" onClick={traceThemeIdOne}>
                 <Button >
