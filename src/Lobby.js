@@ -105,9 +105,16 @@ function Lobby() {
       if (themeId) {
         getRoomsByClass('美食', (result) => {
           console.log(result);
+          setRoomNumber(result.length);
           setRooms(
-            
-          )
+            result.map((item) => ({
+              id: item.CRID,
+              data: {
+                roomName: item.CRName,
+                roomScale: item.Capacity
+              }
+            }))
+          );
         });
         // db.collection('theme').doc(themeId).collection('rooms').onSnapshot((snapshot) => {
         //   setRoomNumber(snapshot.docs.length);
