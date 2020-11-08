@@ -9,10 +9,12 @@ export function login(userID,password,callback){
 	                       userName:password
 	             },
 	            async:false,
+
 	            success: function (data) {
                             if(data.code=200)
 				console.log(data);
-                                callback(true);
+                               alert("登陆成功"+data);
+			        callback(true);
 			        },
 	            fail: function(error){
 			      console.log(error);
