@@ -13,11 +13,12 @@ export function login(userID,password,callback){
 	            success: function (data) {
                             if(data.code=200)
 				console.log(data);
-                               alert("登陆成功"+data);
+                                alert(data.message);
 			        callback(true);
 			        },
-	            fail: function(error){
+	                   fail: function(error){
 			      console.log(error);
+				  
 			      
 	            }
 	        });
