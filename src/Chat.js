@@ -14,7 +14,6 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { Link } from "react-router-dom"
 
 function Chat() {
-    const user = useSelector(selectUser);
     const [input, setInput] = useState("");
     const roomName = useSelector(selectRoomName);
     const roomId = useSelector(selectRoomId);
@@ -42,14 +41,14 @@ function Chat() {
         e.preventDefault();
         
         // Firebase
-        db.collection("rooms").doc(roomId).collection("messages").add({
-            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-            message: input,
-            uid: user.uid,
-            photo: user.photo, 
-            email: user.email,
-            displayName: user.displayName,
-        })
+        // db.collection("rooms").doc(roomId).collection("messages").add({
+        //     timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        //     message: input,
+        //     uid: user.uid,
+        //     photo: user.photo, 
+        //     email: user.email,
+        //     displayName: user.displayName,
+        // })
     
         setInput("") 
     }

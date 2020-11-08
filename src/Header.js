@@ -7,7 +7,6 @@ import {Avatar, IconButton} from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import {selectUser} from './features/userSlice';
 import {useSelector} from 'react-redux';
-import {auth} from './firebase';
 import {Link} from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
@@ -24,7 +23,6 @@ const useStyles = makeStyles((theme) => ({
 
 function Header() {
   const classes = useStyles();
-  const user = useSelector(selectUser);
 
   return (
     <AppBar position="static">
@@ -38,7 +36,7 @@ function Header() {
           Chat
         </Typography>
         <Link to="/">
-          <Avatar className="sidebar_avatar" onClick={() => auth.signOut()} />
+          <Avatar className="sidebar_avatar" />
         </Link>
       </Toolbar>
     </AppBar>

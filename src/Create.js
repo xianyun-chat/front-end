@@ -5,10 +5,10 @@ import Button from '@material-ui/core/Button'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { Link } from "react-router-dom"
 import db from "./firebase"
-import {selectThemeId} from "./features/themeSlice"
+import { selectThemeId } from "./features/themeSlice"
 import { useSelector } from "react-redux"
-
-
+import { createChatRoom } from './post/createChatRoom'
+import { selectUserId } from "./features/userSlice"
 const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
@@ -16,13 +16,13 @@ const useStyles = makeStyles((theme) => ({
       width: '25ch',
       background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
     },
-    marginTop:"200px",
+    marginTop: "200px",
     marginLeft: "35px",
   },
   btn_back: {
     background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
   },
-  
+
   text_one: {
     marginLeft: '45px'
   },
@@ -34,47 +34,57 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'cener',
   },
   link: {
-    textDecoration: "none"  
+    textDecoration: "none"
   }
 }));
 
 
 
 function Create() {
-    const classes = useStyles();
-      // Create chat room..
-    const themeId = useSelector(selectThemeId)
-    
-    const createRoom = () => {
-        const roomName = document.getElementById("standard-basicpOne")
-        const roomScale = document.getElementById("standard-basicTwo")
-        
-        db.collection('theme').doc(themeId).collection('rooms').add ({
-            roomName: roomName.value,
-            roomScale: roomScale.value
-        })
-    
-    }
-    return (
-        <div>
-            <Link to="/lobby">
-                <Button variant="contained" color="default" className={classes.btn_back} >
-                  <ArrowBackIcon /> 
-                </Button>
-            </Link>
+  const classes = useStyles();
+  // Create chat room..
+  const themeId = useSelector(selectThemeId)
+  // const userId = useSelector(selectUserId)    
+  var storage = window.localStorage;
+  const userId = storage.userId
+  console.log(userId)
+  const createRoom = () => {
+    const roomName = document.getElementById("standard-basicpOne").value;
+    const roomScale = document.getElementById("standard-basicTwo").value;
 
-            <form className={classes.root} noValidate autoComplete="off">
-                <TextField id="standard-basicpOne" label="房名" className={classes.text_one}/>
-                <TextField id="standard-basicTwo" label="人数规模" className={classes.text_two}/>
-                
-                <Button variant="text" color="default" className={classes.button_create } onClick={createRoom}>
-                  <Link to="/chat" className={classes.link}>
-                    <p>创建</p>
-                  </Link>
-                </Button>
-            </form>
-        </div>
-    )
+    createChatRoom(roomName, themeId, userId, roomScale, (result) => {
+      console.log(userId)
+      console.log(themeId)
+      if (result) {
+        window.location.href = '/chat'
+      } else {
+        alert('创建失败')
+      }
+    })
+    // db.collection('theme').doc(themeId).collection('rooms').add({
+    //   roomName: roomName.value,
+    //   roomScale: roomScale.value
+    // })
+
+  }
+  return (
+    <div>
+      <Link to="/lobby">
+        <Button variant="contained" color="default" className={classes.btn_back} >
+          <ArrowBackIcon />
+        </Button>
+      </Link>
+
+      <form className={classes.root} noValidate autoComplete="off">
+        <TextField id="standard-basicpOne" label="房名" className={classes.text_one} />
+        <TextField id="standard-basicTwo" label="人数规模" className={classes.text_two} />
+
+        <Button variant="text" color="default" className={classes.button_create} onClick={createRoom}>
+          <p>创建</p>
+        </Button>
+      </form>
+    </div>
+  )
 }
 
 export default Create

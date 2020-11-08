@@ -1,5 +1,5 @@
 import $ from 'jquery';
-export function createChatRoom(userID, roomName, className, capacity, callback) {
+export function createChatRoom( roomName, className, userID, capacity, callback) {
   $.ajax({
     url: 'http://49.235.190.178:10010/api/create/chat_room',
     type: 'post',

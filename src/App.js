@@ -17,28 +17,28 @@ import ChangePW from './ChangePw';
 
 function App() {
   
-  const user = useSelector(selectUser);
-  const dispatch = useDispatch();
+  // const user = useSelector(selectUser);
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    auth.onAuthStateChanged((authUser) => {
-      if(authUser) {
-        // user is logged in
-        dispatch (
-          // get users' information
-          login({
-            uid: authUser.uid,
-            photo: authUser.photoURL,
-            email: authUser.email,
-            displayName: authUser.displayName,
-          })
-        );
-      }  else {
-        // user is logged out
-        dispatch(logout());
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  //   auth.onAuthStateChanged((authUser) => {
+  //     if(authUser) {
+  //       // user is logged in
+  //       dispatch (
+  //         // get users' information
+  //         login({
+  //           uid: authUser.uid,
+  //           photo: authUser.photoURL,
+  //           email: authUser.email,
+  //           displayName: authUser.displayName,
+  //         })
+  //       );
+  //     }  else {
+  //       // user is logged out
+  //       dispatch(logout());
+  //     }
+  //   });
+  // }, []);
   return (
     <Router >
       <div className="app">

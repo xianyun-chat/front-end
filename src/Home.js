@@ -10,7 +10,7 @@ import {login} from './post/login';
 function Home() {
   const dispatch = useDispatch();
   const [themes, setThemes] = useState();
-
+  
   const traceThemeIdOne = () => {
     dispatch(
       setTheme({

@@ -1,6 +1,5 @@
-import {Button} from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import React from 'react';
-import {auth, provider} from './firebase';
 import './Login.css';
 import Avatar from '@material-ui/core/Avatar';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,9 +11,11 @@ import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
-import {makeStyles} from '@material-ui/core/styles';
-import {Link} from 'react-router-dom';
-import {login} from './post/login';
+import { makeStyles } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom';
+import { login } from './post/login';
+import { setUser } from './features/userSlice'
+import { useDispatch } from 'react-redux'
 
 function Bottom() {
   return (
@@ -62,17 +63,25 @@ const useStyles = makeStyles((theme) => ({
 
 function Login() {
   const classes = useStyles();
+  const dispatch = useDispatch();
 
   const signIn = () => {
-    const userID = document.getElementById('email').value;
+    const userId = document.getElementById('email').value;
     const password = document.getElementById('password').value;
-    login(userID, password, (result) => {
-      console.log(result);
+    var storage = window.localStorage;
+    storage['userId'] = userId
+    login(userId, password, (result) => {
+      console.log(userId)
       if (result) {
         window.location.href = '/home';
       } else {
-        alert('登陆失败');
+        alert("帐号密码错误");
       }
+      // dispatch(
+      //   setUser({
+      //     userId: userId,
+      //   })
+      // )
     });
   };
   return (

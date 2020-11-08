@@ -105,6 +105,9 @@ function Lobby() {
       if (themeId) {
         getRoomsByClass('美食', (result) => {
           console.log(result);
+          setRooms(
+            
+          )
         });
         // db.collection('theme').doc(themeId).collection('rooms').onSnapshot((snapshot) => {
         //   setRoomNumber(snapshot.docs.length);
