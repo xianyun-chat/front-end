@@ -1,0 +1,23 @@
+import $ from 'jquery';
+export function modname(userID, userName, callback) {
+  $.ajax({
+    url: 'http://49.235.190.178:10010/api/modify/user_name',
+    type: 'post',
+    data: {
+      userID: userID,
+      userName: userName
+    },
+    async: false,
+    success: function(data) {
+      console.log(data);
+      if (data.code === 200) {
+        callback(true);
+      } else {
+        callback(false);
+      }
+    },
+    fail: function(error) {
+      console.log(error);
+    }
+  });
+}
