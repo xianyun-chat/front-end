@@ -1,24 +1,23 @@
-import { Avatar } from '@material-ui/core'
-import { database } from 'firebase'
-import React, { forwardRef } from 'react'
-import { selectUserId } from './features/userSlice'
-import "./Message.css"
-import { useSelector} from "react-redux"
+import {Avatar} from '@material-ui/core';
+import {database} from 'firebase';
+import React, {forwardRef} from 'react';
+import {selectUserId} from './features/userSlice';
+import './Message.css';
+import {useSelector} from 'react-redux';
 
-const Message = forwardRef(({ id, contents: {
-    timestamp,displayName,email,message,photo,uid }},
-    ref
-    ) => {
-    const user = useSelector(selectUserId);
+const Message = forwardRef(({id, message}, ref) => {
+  // const user = useSelector(selectUserId);
+  const roomId = window.localStorage.getItem('roomId');
+  const userId = window.localStorage.getItem('userId');
+  console.log(id, userId);
+  return (
+    <div ref={ref} className={`message ${userId === id && 'message_sender'}`}>
+      <Avatar className="message_photo" src="" />
+      <p className="chat_name">{id}</p>
+      <p className="chat_messages">{message}</p>
+      <small>{new Date().toLocaleDateString()}</small>
+    </div>
+  );
+});
 
-    return (
-        <div ref={ref} className={`message ${user.email === email && "message_sender"}`}>
-          <Avatar className="message_photo" src={photo} />
-          <p className="chat_name">{displayName}</p>
-          <p className="chat_messages">{message}</p> 
-          <small>{new Date(timestamp?.toDate()).toLocaleDateString()}</small>
-        </div>
-    )
-})
-
-export default Message
+export default Message;

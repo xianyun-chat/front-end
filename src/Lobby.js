@@ -103,7 +103,7 @@ function Lobby() {
   useEffect(
     () => {
       if (themeId) {
-        getRoomsByClass('美食', (result) => {
+        getRoomsByClass(themeId, (result) => {
           console.log(result);
           setRoomNumber(result.length);
           setRooms(
