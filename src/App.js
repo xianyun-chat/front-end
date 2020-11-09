@@ -3,16 +3,15 @@ import './App.css';
 import { useDispatch,useSelector } from 'react-redux'
 import { logout, selectUser, login} from "./features/userSlice"
 import Login from "./Login"
-import {auth} from "./firebase"
 import {BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from "./Home"
 import Header from "./Header"
 import Lobby from './Lobby';
-import Function from "./Function"
 import Create from "./Create"
 import Chat from "./Chat"
 import SignUp from './SignUp';
 import ChangePW from './ChangePw';
+import ChangeUN from './ChangeUN';
 
 
 function App() {
@@ -64,6 +63,9 @@ function App() {
                 </Route>
                 <Route path="/changepw">
                   <ChangePW />
+                </Route>
+                <Route path="/changeun">
+                  <ChangeUN />
                 </Route>
               </Switch> 
         </div> 

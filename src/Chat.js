@@ -5,8 +5,6 @@ import MicNoneIcon from '@material-ui/icons/MicNone';
 import Message from './Message';
 import {selectRoomName, selectRoomId} from './features/roomSlice';
 import {useSelector} from 'react-redux';
-import db from './firebase';
-import firebase from 'firebase';
 import {selectUser} from './features/userSlice';
 import FlipMove from 'react-flip-move';
 import Button from '@material-ui/core/Button';

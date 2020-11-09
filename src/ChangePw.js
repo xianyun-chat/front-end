@@ -9,6 +9,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import {Link} from "react-router-dom"
+import {modifyPassword} from "./post/modifyPassword"
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -47,7 +48,28 @@ const useStyles = makeStyles((theme) => ({
 
 function ChangePW() {
     const classes = useStyles();
+    var storage = window.localStorage;
+    const userID = storage.userId
+    const change = () => {
+      const oldPassword = document.getElementById('oldPassword').value;
+      const newPassword = document.getElementById('newPassword').value;
+      const verifyPassword = document.getElementById('verifyPassword').value;
 
+      if (newPassword !== verifyPassword) {
+        alert('两次输入的密码不一致！');
+      } else {
+        modifyPassword(userID, oldPassword,newPassword, (result) => {
+          console.log(result);
+          console.log(userID)
+          if (result) {
+            alert('修改成功');
+            window.location.href = '/';
+          } else {
+            alert('修改失败');
+          }
+        });
+      }
+    };
     return (
         <Grid container component="main" className={classes.root}>
         <CssBaseline />
@@ -66,7 +88,7 @@ function ChangePW() {
                 margin="normal"
                 required
                 fullWidth
-                id="password"
+                id="oldPassword"
                 label="old Password"
                 name="oldPassword"
                 autoComplete="oldPassword"
@@ -77,20 +99,20 @@ function ChangePW() {
                 margin="normal"
                 required
                 fullWidth
-                name="Verify password"
-                label="Verify Password"
+                name="new password"
+                label="New Password"
                 type="password"
-                id="password"
+                id="newPassword"
                 />
                 <TextField
                 variant="outlined"
                 margin="normal"
                 required
                 fullWidth
-                name="new password"
-                label="New Password"
+                name="Verify password"
+                label="Verify Password"
                 type="password"
-                id="password"
+                id="verifyPassword"
                 />
                 <Button
                 // type="submit"
@@ -98,10 +120,9 @@ function ChangePW() {
                 variant="contained"
                 color="primary"
                 className={classes.submit}
+                onClick={change}
                 >
-                    <Link to="/" className={classes.link}>
-                        Change
-                    </Link>
+                  Change
                 </Button>
             </form>
             </div>

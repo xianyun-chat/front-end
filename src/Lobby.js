@@ -1,8 +1,7 @@
 import React, {useState, useEffect, Children} from 'react';
-import {Grid, CardContent, Card, makeStyles, Paper} from '@material-ui/core';
+import {Grid, makeStyles, Paper} from '@material-ui/core';
 import Room from './Room';
 import Header from './Header';
-import db from './firebase';
 import {selectThemeId} from './features/themeSlice';
 import {useSelector} from 'react-redux';
 import {Toolbar, AppBar, TextField} from '@material-ui/core';
@@ -88,6 +87,8 @@ function Lobby() {
   // const outOfFrame = (name) => {
   //     console.log(name + "left the screen!")
   // }
+  var storage = window.localStorage;
+
   const handleSearchChange = (e) => {
     setFilter(e.target.value);
     setRoomNumber(
@@ -102,8 +103,8 @@ function Lobby() {
 
   useEffect(
     () => {
-      if (themeId) {
-        getRoomsByClass(themeId, (result) => {
+      // if (themeId) {
+        getRoomsByClass(storage.themeId, (result) => {
           console.log(result);
           setRoomNumber(result.length);
           setRooms(
@@ -125,9 +126,9 @@ function Lobby() {
         //     }))
         //   );
         // });
-      }
+      // }
     },
-    [themeId]
+    []
   );
 
   return (
