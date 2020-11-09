@@ -48,3 +48,76 @@ body {
     display: flex;
     flex-direction: column;
 }
+.box{
+    align-items: center;
+    width: 100vm;
+    height: 100vm;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    margin-top: 5rem; }
+    .div1{
+        width: 270px;
+        height: 270px;
+        border-radius: 100%;
+        top: 10px;
+    }
+    .box ul {
+      border: 1px #000 dashed;
+      margin: auto;
+      position: relative;
+      width: 270px;
+      height: 270px;
+      border-radius: 100%;
+      top: 10px; }
+      li link{
+        width: 60px;
+        height: 60px;
+      }
+      li{
+        width: 50px;
+        height:50px;
+        overflow: hidden;
+        position: absolute;
+        border-radius: 100%;
+        left:50%;
+        margin-left: -30px;
+        margin-top: -50px;
+        top:50%;
+        transform-origin: center 200px;   /* 调整旋转中心，水平居中，垂直坐标为图片下方200px */
+    }
+      
+        .box li:nth-child(1) {
+         transform: translateY(-170px) rotateZ(0deg); }
+        .box li:nth-child(1) .house{
+              transform: rotateZ(0deg); }
+        .box li:nth-child(2) {
+        transform: translateY(-170px) rotateZ(80deg); }
+        .box li:nth-child(2) .food{
+         transform: rotateZ(-80deg); }
+         .box li:nth-child(3) {
+		transform: translateY(-170px) rotateZ(150deg); }
+	    .box li:nth-child(3) .transportation{
+			  transform: rotateZ(-150deg); }
+         .box li:nth-child(4) {
+             transform: translateY(-170px) rotateZ(220deg); }
+        .box li:nth-child(4) .entertainment{
+              transform: rotateZ(-240deg); }
+        .box li:nth-child(5) {
+              transform: translateY(-170px) rotateZ(300deg); }
+        .box li:nth-child(5) .clothing{
+               transform: rotateZ(-320deg); }
+              
+    .box ul {
+         animation: MoTianLun 50s infinite linear; }
+     .box li >link , .box ul li >link{
+        animation: MoTianLun 50s infinite linear reverse; }
+                       
+    @keyframes MoTianLun {
+         0% {
+             transform: rotateZ(0); }
+        100% {
+             transform: rotateZ(360deg); 
+             } }         
+      
+ 
