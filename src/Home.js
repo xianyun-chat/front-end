@@ -4,74 +4,58 @@ import './Home.css';
 import {setTheme} from './features/themeSlice';
 import {useDispatch} from 'react-redux';
 import {Button} from '@material-ui/core';
-import db from './firebase';
 import {login} from './post/login';
 
 function Home() {
   const dispatch = useDispatch();
   const [themes, setThemes] = useState();
+  var storage = window.localStorage;
+  // storage['userId'] = userId
   
   const traceThemeIdOne = () => {
-    dispatch(
-      setTheme({
-        themeId: 'food'
-      })
-    );
+    // dispatch(
+    //   setTheme({
+    //     themeId: 'food'
+    //   })
+    // );
+    storage['themeId'] = 'food'
   };
   const traceThemeIdTwo = () => {
-    dispatch(
-      setTheme({
-        themeId: 'clothing'
-      })
-    );
+    // dispatch(
+    //   setTheme({
+    //     themeId: 'clothing'
+    //   })
+    // );
+    storage['themeId'] = 'clothing'
   };
   const traceThemeIdThree = () => {
-    dispatch(
-      setTheme({
-        themeId: 'go'
-      })
-    );
+    // dispatch(
+    //   setTheme({
+    //     themeId: 'go'
+    //   })
+    // );
+    storage['themeId'] = 'go'
   };
   const traceThemeIdFour = () => {
-    dispatch(
-      setTheme({
-        themeId: 'home'
-      })
-    );
+    // dispatch(
+    //   setTheme({
+    //     themeId: 'home'
+    //   })
+    // );
+    storage['themeId'] = 'home'
   };
   const traceThemeIdFive = () => {
-    dispatch(
-      setTheme({
-        themeId: 'entrainment'
-      })
-    );
+    // dispatch(
+    //   setTheme({
+    //     themeId: 'entrainment'
+    //   })
+    // );
+    storage['themeId'] = 'entrainment'
   };
-  useEffect(() => {
-    //DB
-    db.collection('theme').onSnapshot((snapshot) =>
-      setThemes(
-        snapshot.docs.map((doc) => ({
-          id: doc.id
-        }))
-      )
-    );
-  }, []);
-
+  
+  
   return (
     <div className="home_body">
-      <Button
-        onClick={() => {
-          login('123456', '888888', (result) => {
-            if (result === true) {
-              window.location.href = 'http://localhost:3000/lobby';
-            }
-            // else {} // 给用户一个警告
-          });
-        }}
-      >
-        接口测试
-      </Button>
-
       <Link to="/lobby" onClick={traceThemeIdOne}>
         <Button>
           <img

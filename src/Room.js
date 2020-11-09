@@ -1,9 +1,9 @@
 import React, {useState, Children} from 'react';
-import {Link} from 'react-router-dom';
 import {makeStyles} from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import {useDispatch} from 'react-redux';
 import {setRoom} from './features/roomSlice';
+import { getUserNumer } from './post/getUserNumer'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,12 +23,16 @@ function Room({id, name, image, scale, hours, mins, boom, noEntry, entry}) {
   const classes = useStyles();
   const dispatch = useDispatch();
   const [numberInRoom, setNumberInRoom] = useState(1);
-
+  
   const joinInRoom = () => {
-    setNumberInRoom(numberInRoom + 1);
+    // setNumberInRoom(numberInRoom + 1);-----------------------------------------------------------------------------------------------------
     window.localStorage.setItem('roomId', id);
+    getUserNumer(window.localStorage.roomId,(result) => {
+      setNumberInRoom(result);
+      console.log(result)
+    })
     window.location.href = '/chat';
-    console.log(111111111);
+
   };
   const shot = () => {
     dispatch(

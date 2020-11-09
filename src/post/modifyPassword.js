@@ -1,5 +1,5 @@
 import $ from 'jquery';
-export function modifyUserName(userID, passwordOld, passwordNew, callback) {
+export function modifyPassword(userID, passwordOld, passwordNew, callback) {
   $.ajax({
     url: 'http://49.235.190.178:10010/api/modify/password',
     type: 'post',

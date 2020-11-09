@@ -4,7 +4,6 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import {Link} from 'react-router-dom';
-import db from './firebase';
 import {selectThemeId} from './features/themeSlice';
 import {useSelector} from 'react-redux';
 import {createChatRoom} from './post/createChatRoom';
@@ -41,14 +40,17 @@ const useStyles = makeStyles((theme) => ({
 function Create() {
   const classes = useStyles();
   // Create chat room..
-  const themeId = useSelector(selectThemeId);
+  // const themeId = useSelector(selectThemeId);
   // const userId = useSelector(selectUserId)
   var storage = window.localStorage;
   const userId = storage.userId;
+  const themeId = storage.themeId
+  
   console.log(userId);
   const createRoom = () => {
     const roomName = document.getElementById('standard-basicpOne').value;
     const roomScale = document.getElementById('standard-basicTwo').value;
+    storage['roomName'] = roomName;
     createChatRoom(roomName, themeId, userId, roomScale, (result) => {
       console.log(roomName, themeId, userId, roomScale);
       if (result) {
