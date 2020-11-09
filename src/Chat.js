@@ -19,7 +19,9 @@ socket.connect();
 
 function Chat() {
   const [input, setInput] = useState('');
-  const roomName = useSelector(selectRoomName);
+  // const roomName = useSelector(selectRoomName);
+
+  const roomName = window.localStorage.getItem('roomName')
   // const roomId = useSelector(selectRoomId);
   const [messages, setMessages] = useState([]);
   const roomId = window.localStorage.getItem('roomId');

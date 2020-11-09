@@ -45,10 +45,12 @@ function Create() {
   var storage = window.localStorage;
   const userId = storage.userId;
   const themeId = storage.themeId
+  
   console.log(userId);
   const createRoom = () => {
     const roomName = document.getElementById('standard-basicpOne').value;
     const roomScale = document.getElementById('standard-basicTwo').value;
+    storage['roomName'] = roomName;
     createChatRoom(roomName, themeId, userId, roomScale, (result) => {
       console.log(roomName, themeId, userId, roomScale);
       if (result) {
