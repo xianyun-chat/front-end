@@ -30,7 +30,7 @@ function Room({id, name, image, scale, hours, mins, boom, noEntry, entry}) {
     getUserNumer(window.localStorage.roomId,(result) => {
       setNumberInRoom(result);
     })
-    // window.location.href = '/chat';
+    window.location.href = '/chat';
     console.log(1111);
   };
   const shot = () => {
