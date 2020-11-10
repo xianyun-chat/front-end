@@ -1,13 +1,9 @@
-import React, { useState, Children } from 'react';
-import { useDispatch } from 'react-redux';
-import { setRoom } from './features/roomSlice';
-import { getUserNumer } from './post/getUserNumer'
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
+import React, {useState, Children, useEffect} from 'react';
+import {makeStyles} from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
+import {useDispatch} from 'react-redux';
+import {setRoom} from './features/roomSlice';
+import {getUserNumer} from './post/getUserNumer';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -47,22 +43,9 @@ function Room({ id, name, image, scale, hours, mins, boom, noEntry, entry }) {
   const [numberInRoom, setNumberInRoom] = useState(1);
 
   const joinInRoom = () => {
-    // setNumberInRoom(numberInRoom + 1);-----------------------------------------------------------------------------------------------------
     window.localStorage.setItem('roomId', id);
-    getUserNumer(window.localStorage.roomId, (result) => {
-      setNumberInRoom(result);
-      console.log(result)
-    })
+    window.localStorage.setItem('roomName', name);
     window.location.href = '/app/xianyun-chat/#/chat';
-
-  };
-  const shot = () => {
-    dispatch(
-      setRoom({
-        roomId: id,
-        roomName: name
-      })
-    );
   };
 
   if (numberInRoom / scale > 0.2) {
@@ -78,9 +61,13 @@ function Room({ id, name, image, scale, hours, mins, boom, noEntry, entry }) {
     noEntry = true;
     entry = '人数已满';
   }
-  const ifJump = () => {
-    return noEntry;
-  };
+
+  useEffect(() => {
+    getUserNumer(window.localStorage.roomId, (result) => {
+      console.log(result);
+      setNumberInRoom(result || 0);
+    });
+  }, []);
 
   return (
     <div className="room">

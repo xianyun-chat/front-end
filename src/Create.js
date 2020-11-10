@@ -11,29 +11,25 @@ import {selectUserId} from './features/userSlice';
 const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
-      margin: theme.spacing(4),
+      margin: theme.spacing(2),
       width: '25ch',
       background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)'
     },
-    marginTop: '200px',
-    marginLeft: '35px'
+    height: '100vh',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   btn_back: {
     background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)'
   },
-
-  text_one: {
-    marginLeft: '45px'
-  },
-  text_two: {
-    marginLeft: '45px'
+  text: {
+    width: '70vw'
   },
   button_create: {
-    marginLeft: '45px',
-    justifyContent: 'cener'
-  },
-  link: {
-    textDecoration: 'none'
+    width: '70vw',
+    textAlign: 'cener'
   }
 }));
 
@@ -44,39 +40,31 @@ function Create() {
   // const userId = useSelector(selectUserId)
   const storage = window.localStorage;
   const userId = storage.userId;
-  const themeId = storage.themeId
-  
-  console.log(userId);
+  const themeId = storage.themeId;
+
+  const goBack = () => (window.location.href = '/app/xianyun-chat/#/lobby');
   const createRoom = () => {
     const roomName = document.getElementById('standard-basicpOne').value;
     const roomScale = document.getElementById('standard-basicTwo').value;
-    storage['roomName'] = roomName;
     createChatRoom(roomName, themeId, userId, roomScale, (result) => {
-      console.log(roomName, themeId, userId, roomScale);
       if (result) {
+        storage['roomName'] = roomName;
         window.location.href = '/app/xianyun-chat/#/chat';
       } else {
         alert('创建失败');
       }
     });
-    // db.collection('theme').doc(themeId).collection('rooms').add({
-    //   roomName: roomName.value,
-    //   roomScale: roomScale.value
-    // })
   };
   return (
     <div>
-      <Link to="/lobby">
-        <Button variant="contained" color="default" className={classes.btn_back}>
-          <ArrowBackIcon />
-        </Button>
-      </Link>
-
       <form className={classes.root} noValidate autoComplete="off">
-        <TextField id="standard-basicpOne" label="房名" className={classes.text_one} />
-        <TextField id="standard-basicTwo" label="人数规模" className={classes.text_two} />
+        <TextField id="standard-basicpOne" label="房名" className={classes.text} />
+        <TextField id="standard-basicTwo" label="人数规模" className={classes.text} />
         <Button variant="text" color="default" className={classes.button_create} onClick={createRoom}>
-          <p>创建</p>
+          <p>创建房间</p>
+        </Button>
+        <Button variant="text" color="default" className={classes.button_create} onClick={goBack}>
+          <p>返回大厅</p>
         </Button>
       </form>
     </div>
