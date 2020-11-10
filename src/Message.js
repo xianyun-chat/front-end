@@ -10,7 +10,6 @@ const Message = forwardRef(({id, message}, ref) => {
   const userId = window.localStorage.getItem('userId');
   var storage = window.localStorage;
   const userName = storage.userName;
-  console.log(id, userId);
   return (
     <div ref={ref} className={`message ${userId === id && 'message_sender'}`}>
       <Avatar className="message_photo" src="" />
