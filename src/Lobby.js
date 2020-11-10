@@ -182,6 +182,8 @@ function Lobby() {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
+  const isSubstring = (subString, string) => string.indexOf(subString) !== -1;
+
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
@@ -231,11 +233,12 @@ function Lobby() {
   );
 
   const handleSearchChange = (e) => {
+    console.log(e.target.value);
     setFilter(e.target.value);
     setRoomNumber(
-      rooms.filter(
-        (room) => room.id.indexOf(e.target.value) !== -1 || room.data.roomName.indexOf(e.target.value) !== -1
-      ).length
+      rooms.filter((room) => {
+        return isSubstring(e.target.value, room.id.toString()) || isSubstring(e.target.value, room.data.roomName);
+      }).length
     );
     if (e.target.value === '') {
       setRoomNumber(rooms.length);
@@ -257,16 +260,6 @@ function Lobby() {
         }))
       );
     });
-    // db.collection('theme').doc(themeId).collection('rooms').onSnapshot((snapshot) => {
-    //   setRoomNumber(snapshot.docs.length);
-    //   setRooms(
-    //     snapshot.docs.map((doc) => ({
-    //       id: doc.id,
-    //       data: doc.data()
-    //     }))
-    //   );
-    // });
-    // }
   }, []);
 
   return (
@@ -355,7 +348,7 @@ function Lobby() {
         <Grid container>
           {rooms.map(({id, data: {roomName, roomScale}}) =>
             Children.toArray(
-              (roomName.includes(filter) || id.includes(filter)) && (
+              (isSubstring(filter, roomName) || isSubstring(filter, id.toString())) && (
                 <Grid item xs={6}>
                   {/* <TinderCard
                             preventSwipe={["up","down"]}
