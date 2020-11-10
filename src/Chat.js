@@ -25,7 +25,7 @@ function Chat() {
 
   const roomName = window.localStorage.getItem('roomName');
   // const roomId = useSelector(selectRoomId);
-  const [messages, setMessages] = useState(history);
+  const [messages, setMessages] = useState([]);
   const roomId = window.localStorage.getItem('roomId');
   const userId = window.localStorage.getItem('userId');
 

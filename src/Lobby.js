@@ -142,16 +142,16 @@ function Lobby() {
     window.location.href = '/';
   }
   const toPw = () => {
-    window.location.href = '/changepw'
+    window.location.href = '/app/xianyun-chat/#/changepw'
   }
   const toUN = () => {
-    window.location.href = '/changeun'
+    window.location.href = '/app/xianyun-chat/#/changeun'
   }
   const toCreate = () => {
-    window.location.href = '/create'
+    window.location.href = '/app/xianyun-chat/#/create'
   }
   const toHome = () => {
-    window.location.href = '/home'
+    window.location.href = '/app/xianyun-chat/#/home'
   }
   // const swiped = (direction,nameToDelete) => {
   //     console.log("remove" + nameToDelete)
@@ -298,6 +298,7 @@ function Lobby() {
                 input: classes.inputInput,
               }}
               inputProps={{ 'aria-label': 'search' }}
+              onChange={handleSearchChange}
             />
           </div>
           <div />
@@ -332,26 +333,6 @@ function Lobby() {
       </AppBar>
       {renderMobileMenu}
       {renderMenu}
-      {/* <Header />
-      <AppBar position="static">
-        <Toolbar className={classes.function}>
-          <div className={classes.searchContainer}>
-            <SearchIcon className={classes.searchIcon} />
-            <TextField
-              onChange={handleSearchChange}
-              className={classes.searchInput}
-              label="id or name"
-              variant="standard"
-            />
-          </div>
-          <Link to="/create">
-            <Fab color="secondary" aria-label="add" className={classes.fabButton}>
-              <AddIcon />
-            </Fab>
-          </Link>
-        </Toolbar>
-      </AppBar> */}
-      {/* room */}
       <div className={classes.room}>
         <Grid container>
           {rooms.map(({ id, data: { roomName, roomScale } }) =>
