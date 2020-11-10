@@ -31,7 +31,7 @@
 }
 
 body {
-    background-image: url(./star.jpg);
+    background-image: url(./images/star.jpg);
     background-size: cover;
     min-height: 100vh;
     display: flex;

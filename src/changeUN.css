@@ -1,5 +1,5 @@
 .root {
-    background-color:#eeeeee;
+    background-color: #eeeeee;
 }
 
 .header {
@@ -15,7 +15,7 @@
     flex: 1;
 }
 
-.body > input {
+.body>input {
     width: 100%;
     padding: 2px;
     height: 5vh;
