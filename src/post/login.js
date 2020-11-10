@@ -11,7 +11,7 @@ export function login(userID, password, callback) {
     success: function(data) {
       console.log(data);
       if (data.code === 200) {
-        callback(true);
+        callback(data.user);
       } else {
         callback(false);
       }

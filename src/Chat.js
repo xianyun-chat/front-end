@@ -39,7 +39,8 @@ function Chat() {
       const newMessages = messages;
       newMessages.push({
         id: message.userID,
-        message: message.content
+        message: message.content,
+        date: new Date().toLocaleTimeString()
       });
       setMessages(newMessages);
       setInput('');
@@ -90,7 +91,7 @@ function Chat() {
       {/* chat messages */}
 
       <div className="chat_messages">
-        <FlipMove>{messages.map(({id, message}) => Children.toArray(<Message id={id} message={message} />))}</FlipMove>
+        <FlipMove>{messages.map((message) => Children.toArray(<Message {...message} />))}</FlipMove>
       </div>
       {/* chat input */}
       <div className="chat_input">

@@ -137,22 +137,22 @@ function Lobby() {
   const themeId = useSelector(selectThemeId);
   const [roomNumber, setRoomNumber] = useState(rooms.length);
   const [filter, setFilter] = useState('');
-  var storage = window.localStorage;
+  const storage = window.localStorage;
   const logout = () => {
     window.location.href = '/';
   };
   const toPw = () => {
-    window.location.href = '/app/xianyun-chat/#/changepw'
-  }
+    window.location.href = '/app/xianyun-chat/#/changepw';
+  };
   const toUN = () => {
-    window.location.href = '/app/xianyun-chat/#/changeun'
-  }
+    window.location.href = '/app/xianyun-chat/#/changeun';
+  };
   const toCreate = () => {
-    window.location.href = '/app/xianyun-chat/#/create'
-  }
+    window.location.href = '/app/xianyun-chat/#/create';
+  };
   const toHome = () => {
-    window.location.href = '/app/xianyun-chat/#/home'
-  }
+    window.location.href = '/app/xianyun-chat/#/home';
+  };
   // const swiped = (direction,nameToDelete) => {
   //     console.log("remove" + nameToDelete)
   // }

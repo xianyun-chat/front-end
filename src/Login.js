@@ -1,4 +1,4 @@
-import { Button } from '@material-ui/core';
+import {Button} from '@material-ui/core';
 import React from 'react';
 import './Login.css';
 import Avatar from '@material-ui/core/Avatar';
@@ -11,11 +11,11 @@ import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import { Link } from 'react-router-dom';
-import { login } from './post/login';
-import { setUser } from './features/userSlice'
-import { useDispatch } from 'react-redux'
+import {makeStyles} from '@material-ui/core/styles';
+import {Link} from 'react-router-dom';
+import {login} from './post/login';
+import {setUser} from './features/userSlice';
+import {useDispatch} from 'react-redux';
 
 function Bottom() {
   return (
@@ -68,14 +68,14 @@ function Login() {
   const signIn = () => {
     const userId = document.getElementById('email').value;
     const password = document.getElementById('password').value;
-    var storage = window.localStorage;
-    storage['userId'] = userId
+    const storage = window.localStorage;
+    storage['userId'] = userId;
     login(userId, password, (result) => {
-      console.log(userId)
       if (result) {
+        storage.userName = result.UName;
         window.location.href = '/app/xianyun-chat/#/home';
       } else {
-        alert("帐号密码错误");
+        alert('帐号密码错误');
       }
       // dispatch(
       //   setUser({

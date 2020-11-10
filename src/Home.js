@@ -9,16 +9,16 @@ import {login} from './post/login';
 function Home() {
   const dispatch = useDispatch();
   const [themes, setThemes] = useState();
-  var storage = window.localStorage;
+  const storage = window.localStorage;
   // storage['userId'] = userId
-  
+
   const traceThemeIdOne = () => {
     // dispatch(
     //   setTheme({
     //     themeId: 'food'
     //   })
     // );
-    storage['themeId'] = 'food'
+    storage['themeId'] = 'food';
   };
   const traceThemeIdTwo = () => {
     // dispatch(
@@ -26,7 +26,7 @@ function Home() {
     //     themeId: 'clothing'
     //   })
     // );
-    storage['themeId'] = 'clothing'
+    storage['themeId'] = 'clothing';
   };
   const traceThemeIdThree = () => {
     // dispatch(
@@ -34,7 +34,7 @@ function Home() {
     //     themeId: 'go'
     //   })
     // );
-    storage['themeId'] = 'go'
+    storage['themeId'] = 'go';
   };
   const traceThemeIdFour = () => {
     // dispatch(
@@ -42,7 +42,7 @@ function Home() {
     //     themeId: 'home'
     //   })
     // );
-    storage['themeId'] = 'home'
+    storage['themeId'] = 'home';
   };
   const traceThemeIdFive = () => {
     // dispatch(
@@ -50,61 +50,72 @@ function Home() {
     //     themeId: 'entrainment'
     //   })
     // );
-    storage['themeId'] = 'entrainment'
+    storage['themeId'] = 'entrainment';
   };
-  
-  
+
   return (
     <div className="home_body">
       <Link to="/lobby" onClick={traceThemeIdOne}>
         <Button>
           <img
-            className="house"
+            className="star"
             src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1100&q=60"
             alt=""
           />
+          <p>住</p>
         </Button>
       </Link>
 
       <Link to="/lobby">
         <Button onClick={traceThemeIdTwo}>
           <img
-            className="food"
+            className="star"
             src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=60"
             alt=""
           />
+          <p>食</p>
         </Button>
       </Link>
 
       <Link to="/lobby">
         <Button onClick={traceThemeIdThree}>
           <img
-            className="clothing"
+            className="star"
             src="https://images.unsplash.com/photo-1516762689617-e1cffcef479d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=60"
             alt=""
           />
+          <p>衣</p>
         </Button>
       </Link>
 
       <Link to="/lobby">
         <Button onClick={traceThemeIdFour}>
           <img
-            className="transportation"
+            className="star"
             src="https://images.unsplash.com/photo-1510410493114-38f0a17d66ef?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=60"
             alt=""
           />
+          <p>行</p>
         </Button>
       </Link>
-
       <Link to="/lobby">
         <Button onClick={traceThemeIdFive}>
           <img
-            className="entertainment"
+            className="star"
             src="https://images.unsplash.com/photo-1481328101413-1eef25cc76c0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=60"
             alt=""
           />
+          <p>娱乐</p>
         </Button>
       </Link>
+      <Button onClick={traceThemeIdFive}>
+        <img
+          className="star"
+          src="https://images.unsplash.com/photo-1481328101413-1eef25cc76c0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=60"
+          alt=""
+        />
+        <p>敬请期待</p>
+      </Button>
     </div>
   );
 }

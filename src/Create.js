@@ -42,7 +42,7 @@ function Create() {
   // Create chat room..
   // const themeId = useSelector(selectThemeId);
   // const userId = useSelector(selectUserId)
-  var storage = window.localStorage;
+  const storage = window.localStorage;
   const userId = storage.userId;
   const themeId = storage.themeId
   

@@ -7,7 +7,7 @@ function ChangeUN() {
 
     const change = () => {
         const userName = document.getElementById('name').value
-        var storage = window.localStorage;
+        const storage = window.localStorage;
         storage['userName'] = userName
         const userId = storage.userId
         modname(userId, userName, (result) => {

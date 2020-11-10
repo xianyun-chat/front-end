@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
 
 function ChangePW() {
     const classes = useStyles();
-    var storage = window.localStorage;
+    const storage = window.localStorage;
     const userID = storage.userId
     const change = () => {
       const oldPassword = document.getElementById('oldPassword').value;
