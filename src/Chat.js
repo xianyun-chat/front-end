@@ -40,6 +40,7 @@ function Chat() {
       newMessages.push({
         id: message.userID,
         message: message.content,
+        userName: message.userName,
         date: new Date().toLocaleTimeString()
       });
       setMessages(newMessages);
@@ -73,6 +74,7 @@ function Chat() {
       socket.emit('clientToServer', {
         roomID: roomId,
         userID: userId,
+        userName: window.localStorage.getItem('userName'),
         content: input
       });
     }

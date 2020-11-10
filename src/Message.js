@@ -4,12 +4,11 @@ import {selectUserId} from './features/userSlice';
 import './Message.css';
 import {useSelector} from 'react-redux';
 
-const Message = forwardRef(({id, message, date}, ref) => {
+const Message = forwardRef(({id, message, userName, date}, ref) => {
   // const user = useSelector(selectUserId);
   const roomId = window.localStorage.getItem('roomId');
   const userId = window.localStorage.getItem('userId');
   const storage = window.localStorage;
-  const userName = storage.userName;
   return (
     <div ref={ref} className={`message ${userId === id && 'message_sender'}`}>
       <Avatar className="message_photo" src="" />
