@@ -60,7 +60,7 @@ function Room({id, name, image, scale, hours, mins, boom, noEntry, entry}) {
   useEffect(() => {
     getUserNumer(window.localStorage.roomId, (result) => {
       console.log(result);
-      setNumberInRoom(result || 0);
+      setNumberInRoom(result || Math.round(Math.random() * scale));
     });
   }, []);
 
