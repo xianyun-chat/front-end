@@ -36,13 +36,13 @@ function Header() {
     setAnchorEl(event.currentTarget);
   };
   const logout = () => {
-    window.location.href = '/';
+    window.location.href = '/app/xianyun-chat/#/';
   }
   const toPw = () => {
-    window.location.href = '/changepw'
+    window.location.href = '/app/xianyun-chat/#/changepw'
   }
   const toUN = () => {
-    window.location.href = '/changeun'
+    window.location.href = '/app/xianyun-chat/#/changeun'
   }
   const handleClose = () => {
     setAnchorEl(null);

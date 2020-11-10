@@ -73,7 +73,7 @@ function Login() {
     login(userId, password, (result) => {
       console.log(userId)
       if (result) {
-        window.location.href = '/home';
+        window.location.href = '/app/xianyun-chat/#/home';
       } else {
         alert("帐号密码错误");
       }

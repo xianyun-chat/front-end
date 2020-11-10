@@ -31,7 +31,7 @@ function Room({id, name, image, scale, hours, mins, boom, noEntry, entry}) {
       setNumberInRoom(result);
       console.log(result)
     })
-    window.location.href = '/chat';
+    window.location.href = '/app/xianyun-chat/#/chat';
 
   };
   const shot = () => {

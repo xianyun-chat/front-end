@@ -54,7 +54,7 @@ function Create() {
     createChatRoom(roomName, themeId, userId, roomScale, (result) => {
       console.log(roomName, themeId, userId, roomScale);
       if (result) {
-        window.location.href = '/chat';
+        window.location.href = '/app/xianyun-chat/#/chat';
       } else {
         alert('创建失败');
       }

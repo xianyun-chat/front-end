@@ -63,7 +63,7 @@ function ChangePW() {
           console.log(userID)
           if (result) {
             alert('修改成功');
-            window.location.href = '/';
+            window.location.href = '/app/xianyun-chat/#/';
           } else {
             alert('修改失败');
           }

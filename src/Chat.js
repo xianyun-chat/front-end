@@ -10,26 +10,37 @@ import FlipMove from 'react-flip-move';
 import Button from '@material-ui/core/Button';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import {Link} from 'react-router-dom';
+import {getMessageHistory} from './post/getMessageHistory';
 
 const io = require('socket.io-client');
 const socket = io('http://49.235.190.178:10020', {
   reconnectionDelayMax: 100000
 });
 socket.connect();
+let history = [];
 
 function Chat() {
   const [input, setInput] = useState('');
   // const roomName = useSelector(selectRoomName);
 
-  const roomName = window.localStorage.getItem('roomName')
+  const roomName = window.localStorage.getItem('roomName');
   // const roomId = useSelector(selectRoomId);
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState(history);
   const roomId = window.localStorage.getItem('roomId');
   const userId = window.localStorage.getItem('userId');
 
   //get messages
   useEffect(() => {
     console.log(roomId, userId);
+    // 历史记录
+    getMessageHistory(roomId, 50, (result) => {
+      history = result.map(({UID, Content}) => {
+        return {
+          id: UID,
+          message: Content
+        };
+      });
+    });
     // 接受消息，根据返回的消息决定展示与否，如何展示
     socket.on('serverToClient', (message) => {
       console.log('收到一条消息', message);
@@ -39,6 +50,7 @@ function Chat() {
         message: message.content
       });
       setMessages(newMessages);
+      setInput('');
       /**
          * 返回的 message 对象包括发送的所有内容
          * roomID：聊天室ID
@@ -69,8 +81,6 @@ function Chat() {
       userID: userId,
       content: input
     });
-    setInput('');
-    setTimeout(() => console.log(messages), 0);
   };
 
   return (
@@ -89,7 +99,6 @@ function Chat() {
       {/* chat messages */}
 
       <div className="chat_messages">
-        {console.log(messages)}
         <FlipMove>{messages.map(({id, message}) => Children.toArray(<Message id={id} message={message} />))}</FlipMove>
       </div>
       {/* chat input */}

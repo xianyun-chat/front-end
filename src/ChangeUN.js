@@ -18,14 +18,14 @@ function ChangeUN() {
             console.log(userId)
             if (result) {
               alert('修改成功');
-              window.location.href = '/home';
+              window.location.href = '/app/xianyun-chat/#/home';
             } else {
               alert('修改失败');
             }
           });
     }
     const toLobby = () => {
-        window.location.href = '/lobby'
+        window.location.href = '/app/xianyun-chat/#/lobby'
     }
 
     return (

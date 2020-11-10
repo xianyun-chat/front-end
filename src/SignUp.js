@@ -59,7 +59,7 @@ function SignUp() {
         console.log(result);
         if (result) {
           alert('注册成功');
-          window.location.href = '/';
+          window.location.href = '/app/xianyun-chat/#/';
         } else {
           alert('注册失败');
         }
