@@ -1,5 +1,4 @@
 import {Avatar} from '@material-ui/core';
-import {database} from 'firebase';
 import React, {forwardRef} from 'react';
 import {selectUserId} from './features/userSlice';
 import './Message.css';
@@ -15,7 +14,7 @@ const Message = forwardRef(({id, message}, ref) => {
   return (
     <div ref={ref} className={`message ${userId === id && 'message_sender'}`}>
       <Avatar className="message_photo" src="" />
-      <p className="chat_name">{userName}</p>
+      <div className="user_name">{userName}</div>
       <p className="chat_messages">{message}</p>
       <small>{new Date().toLocaleDateString()}</small>
     </div>
