@@ -14,16 +14,16 @@
 
 .home_body p {
     color: white;
-    text-shadow: 3px 3px black;
+    text-shadow: 2px 2px gray;
     position: absolute;
-    left: 4vw;
-    bottom: 1vw;
-    font-size: 2em;
+    left: 6vw;
+    bottom: 6vw;
+    font-size: 1.7em;
 }
 
 .star {
-    border-radius: 10%;
-    width: 40vw;
+    border-radius: 50%;
+    width: 30vw;
     height: 30vw;
     display: flex;
     flex-direction: column;

@@ -114,7 +114,7 @@ function Home() {
           src="https://images.unsplash.com/photo-1481328101413-1eef25cc76c0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=60"
           alt=""
         />
-        <p>敬请期待</p>
+        <p>其他</p>
       </Button>
     </div>
   );

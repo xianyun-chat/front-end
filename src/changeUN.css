@@ -1,11 +1,14 @@
 .root {
     background-color: #eeeeee;
+    font-size: 1.2em;
 }
 
 .header {
     align-items: center;
     display: flex;
     justify-content: space-between;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .body {
