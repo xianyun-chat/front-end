@@ -3,7 +3,7 @@ import './App.css';
 import { useDispatch,useSelector } from 'react-redux'
 import { logout, selectUser, login} from "./features/userSlice"
 import Login from "./Login"
-import {BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {HashRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from "./Home"
 import Header from "./Header"
 import Lobby from './Lobby';
