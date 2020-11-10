@@ -109,15 +109,14 @@ const useStyles = makeStyles((theme) => ({
   // },
   room: {
     flex: 1,
-    overflow: 'scroll'
+    overflow: 'scroll',
+    margin: '3vw 3vw 5vh'
   },
   paper: {
     flex: 1,
     textAlign: 'center',
     color: theme.palette.text.secondary,
-    marginLeft: '10px',
-    marginRight: '10px',
-    marginTop: '10px'
+    margin: '5px'
   },
   font: {
     display: 'flex',
@@ -126,8 +125,8 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     position: 'fixed',
     width: '100%',
-    height: '3vh',
-    bottom: 0
+    bottom: 0,
+    height: '4vh'
   }
 }));
 
@@ -330,22 +329,9 @@ function Lobby() {
             Children.toArray(
               (isSubstring(filter, roomName) || isSubstring(filter, id.toString())) && (
                 <Grid item xs={6}>
-                  {/* <TinderCard
-                            preventSwipe={["up","down"]}
-                            onSwipe={(dir) => swiped(dir,roomName)}
-                            onCardLeftScreen={() => outOfFrame(roomName)}> */}
                   <Paper className={classes.paper}>
-                    <Room
-                      key={id}
-                      //Mark-----------------------------------------
-                      id={id}
-                      name={roomName}
-                      // hours={hours}
-                      // mins={mins}
-                      scale={roomScale}
-                    />
+                    <Room key={id} id={id} name={roomName} scale={roomScale} />
                   </Paper>
-                  {/* </TinderCard> */}
                 </Grid>
               )
             )

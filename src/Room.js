@@ -6,11 +6,8 @@ import {setRoom} from './features/roomSlice';
 import {getUserNumer} from './post/getUserNumer';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-
-  },
-  link: {
-    textDecoration: 'none'
+  room: {
+    padding: '2%'
   },
   boom: {
     display: 'flex',
@@ -19,25 +16,23 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '3px'
   },
   button: {
-    marginBottom: '10px'
+    margin: '20px auto 10px',
+    fontSize: '0.5em'
   },
-  room_id: {
-    marginTop: '10px',
+  roomName: {
+    fontSize: '1.2em',
+    paddingLeft: '10px',
+    paddingBottom: '5px',
     textAlign: 'left'
   },
-  room_name: {
-    marginTop: '5px',
-
-  },
-  room_info: {
-    margin: '3px'
-  },
-  room_scale: {
-    marginTop: '5px'
+  roomInfo: {
+    fontSize: '0.6em',
+    paddingLeft: '10px',
+    textAlign: 'left'
   }
 }));
 
-function Room({ id, name, image, scale, hours, mins, boom, noEntry, entry }) {
+function Room({id, name, image, scale, hours, mins, boom, noEntry, entry}) {
   const classes = useStyles();
   const dispatch = useDispatch();
   const [numberInRoom, setNumberInRoom] = useState(1);
@@ -70,22 +65,29 @@ function Room({ id, name, image, scale, hours, mins, boom, noEntry, entry }) {
   }, []);
 
   return (
-    <div className="room">
-      <div className={classes.room_info}>
-        <p className={classes.room_id}>{id}</p>
-        <p className={classes.room_name}>房名：{name}</p>
-        <p className={classes.room_scale}>
-          在线人数： {numberInRoom}/{scale}
+    <div className={classes.room}>
+      <div>
+        <p className={classes.roomName}>
+          {name}
+          {Array(boom).fill().map((_) => Children.toArray(<span>🔥</span>))}
         </p>
-        <div className={classes.boom}>{Array(boom).fill().map((_) => Children.toArray(<p>🔥</p>))}</div>
-        <img className="" src={image} alt="" />
-        <Button className={classes.button} variant="contained" color="primary" disableElevation onClick={joinInRoom} disabled={noEntry}>
+        <p className={classes.roomInfo}>聊天室ID: {id}</p>
+        <p className={classes.roomInfo}>
+          在线人数: {numberInRoom}/{scale}
+        </p>
+        <div className={classes.boom} />
+        <Button
+          className={classes.button}
+          variant="contained"
+          color="primary"
+          disableElevation
+          onClick={joinInRoom}
+          disabled={noEntry}
+        >
           {entry}
         </Button>
       </div>
     </div>
-
-
   );
 }
 
