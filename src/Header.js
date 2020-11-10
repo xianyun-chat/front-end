@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import Menu from "@material-ui/core/Menu";
 import MenuItem from '@material-ui/core/MenuItem';
-
+import HomeIcon from '@material-ui/icons/Home';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -51,11 +51,9 @@ function Header() {
   return (
     <AppBar position="static">
       <Toolbar>
-        <Link to="/home">
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
+            <HomeIcon />
           </IconButton>
-        </Link>
         <Typography variant="h6" className={classes.title}>
           Chat
         </Typography>
