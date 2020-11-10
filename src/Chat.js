@@ -3,21 +3,9 @@ import React, {useState, useEffect, Children} from 'react';
 import './Chat.css';
 import MicNoneIcon from '@material-ui/icons/MicNone';
 import Message from './Message';
-import {selectRoomName, selectRoomId} from './features/roomSlice';
-import {useSelector} from 'react-redux';
-import {selectUser} from './features/userSlice';
 import FlipMove from 'react-flip-move';
 import Button from '@material-ui/core/Button';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import {Link} from 'react-router-dom';
-import {getMessageHistory} from './post/getMessageHistory';
-
-const io = require('socket.io-client');
-const socket = io('http://49.235.190.178:10020', {
-  reconnectionDelayMax: 100000
-});
-socket.connect();
-let history = [];
 
 function Chat() {
   const [input, setInput] = useState('');
@@ -29,20 +17,22 @@ function Chat() {
   const roomId = window.localStorage.getItem('roomId');
   const userId = window.localStorage.getItem('userId');
 
+  const io = require('socket.io-client');
+  const socket = io('http://49.235.190.178:10020', {
+    reconnectionDelayMax: 100000
+  });
+
+  const onBack = () => {
+    window.location.href = '/app/xianyun-chat/#/lobby';
+    // 退出前取消订阅
+    socket.emit('unsubscribe', {roomID: roomId});
+    // 用户退出聊天室的时候应该断开连接
+    socket.disconnect();
+  };
+
   //get messages
   useEffect(() => {
-    console.log(roomId, userId);
-    // 历史记录
-    getMessageHistory(roomId, 50, (result) => {
-      if (result) {
-        history = result.map(({UID, Content}) => {
-          return {
-            id: UID,
-            message: Content
-          };
-        });
-      }
-    });
+    socket.connect();
     // 接受消息，根据返回的消息决定展示与否，如何展示
     socket.on('serverToClient', (message) => {
       console.log('收到一条消息', message);
@@ -68,7 +58,7 @@ function Chat() {
     socket.emit('subscribe', {roomID: roomId});
     return () => {
       // 退出前取消订阅
-      socket.emit('unsubscribe', {roomID: 1});
+      socket.emit('unsubscribe', {roomID: roomId});
       // 用户退出聊天室的时候应该断开连接
       socket.disconnect();
     };
@@ -77,23 +67,22 @@ function Chat() {
   const handleClickSendMessage = (e) => {
     e.preventDefault();
     // 发送一条消息，用户输入发送消息时执行这段代码
-    console.log(roomId, userId);
-    socket.emit('clientToServer', {
-      roomID: roomId,
-      userID: userId,
-      content: input
-    });
+    if (input !== '') {
+      socket.emit('clientToServer', {
+        roomID: roomId,
+        userID: userId,
+        content: input
+      });
+    }
   };
 
   return (
     <div className="chat">
       {/* chat header */}
       <div className="chat_header">
-        <Link to="./lobby">
-          <Button variant="contained" color="default">
-            <ArrowBackIcon />
-          </Button>
-        </Link>
+        <Button onClick={onBack} variant="contained" color="default">
+          <ArrowBackIcon />
+        </Button>
         <h4>
           <span className="chat_name">{roomName}</span>
         </h4>

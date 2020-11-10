@@ -1,16 +1,16 @@
-import React, { useState, useEffect, Children } from 'react';
-import { Grid, makeStyles, Paper } from '@material-ui/core';
+import React, {useState, useEffect, Children} from 'react';
+import {Grid, makeStyles, Paper} from '@material-ui/core';
 import Room from './Room';
 import Header from './Header';
-import { selectThemeId } from './features/themeSlice';
-import { useSelector } from 'react-redux';
-import { Toolbar, AppBar, TextField } from '@material-ui/core';
-import { fade } from '@material-ui/core/styles';
+import {selectThemeId} from './features/themeSlice';
+import {useSelector} from 'react-redux';
+import {Toolbar, AppBar, TextField} from '@material-ui/core';
+import {fade} from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import AddIcon from '@material-ui/icons/Add';
 import Fab from '@material-ui/core/Fab';
-import { Link } from 'react-router-dom';
-import { getRoomsByClass } from './post/getRoomsByClass';
+import {Link} from 'react-router-dom';
+import {getRoomsByClass} from './post/getRoomsByClass';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -30,28 +30,28 @@ const useStyles = makeStyles((theme) => ({
     height: '100vh'
   },
   menuButton: {
-    marginRight: theme.spacing(2),
+    marginRight: theme.spacing(2)
   },
   title: {
     display: 'none',
     [theme.breakpoints.up('sm')]: {
-      display: 'block',
-    },
+      display: 'block'
+    }
   },
   search: {
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
     backgroundColor: fade(theme.palette.common.white, 0.15),
     '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
+      backgroundColor: fade(theme.palette.common.white, 0.25)
     },
     marginRight: theme.spacing(2),
     marginLeft: 0,
     width: '100%',
     [theme.breakpoints.up('sm')]: {
       marginLeft: theme.spacing(3),
-      width: 'auto',
-    },
+      width: 'auto'
+    }
   },
   searchIcon: {
     padding: theme.spacing(0, 2),
@@ -60,10 +60,10 @@ const useStyles = makeStyles((theme) => ({
     pointerEvents: 'none',
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   inputRoot: {
-    color: 'inherit',
+    color: 'inherit'
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
@@ -72,20 +72,20 @@ const useStyles = makeStyles((theme) => ({
     transition: theme.transitions.create('width'),
     width: '100%',
     [theme.breakpoints.up('md')]: {
-      width: '20ch',
-    },
+      width: '20ch'
+    }
   },
   sectionDesktop: {
     display: 'none',
     [theme.breakpoints.up('md')]: {
-      display: 'flex',
-    },
+      display: 'flex'
+    }
   },
   sectionMobile: {
     display: 'flex',
     [theme.breakpoints.up('md')]: {
-      display: 'none',
-    },
+      display: 'none'
+    }
   },
   // function: {
   //   display: 'flex',
@@ -140,7 +140,7 @@ function Lobby() {
   var storage = window.localStorage;
   const logout = () => {
     window.location.href = '/';
-  }
+  };
   const toPw = () => {
     window.location.href = '/app/xianyun-chat/#/changepw'
   }
@@ -182,20 +182,22 @@ function Lobby() {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
+  const isSubstring = (subString, string) => string.indexOf(subString) !== -1;
+
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      anchorOrigin={{vertical: 'top', horizontal: 'right'}}
       id={menuId}
       keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      transformOrigin={{vertical: 'top', horizontal: 'right'}}
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
       <MenuItem onClick={toUN}>修改用户名</MenuItem>
-      <MenuItem onClick={handleMenuClose, toPw}>修改密码</MenuItem>
-      <MenuItem onClick={handleMenuClose, logout}>退出登陆</MenuItem>
+      <MenuItem onClick={(handleMenuClose, toPw)}>修改密码</MenuItem>
+      <MenuItem onClick={(handleMenuClose, logout)}>退出登陆</MenuItem>
     </Menu>
   );
 
@@ -203,18 +205,18 @@ function Lobby() {
   const renderMobileMenu = (
     <Menu
       anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      anchorOrigin={{vertical: 'top', horizontal: 'right'}}
       id={mobileMenuId}
       keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      transformOrigin={{vertical: 'top', horizontal: 'right'}}
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
       <MenuItem onClick={toCreate}>
-          <IconButton color="inherit">
-            <AddIcon />
-          </IconButton>
-          <p>Add</p>
+        <IconButton color="inherit">
+          <AddIcon />
+        </IconButton>
+        <p>Add</p>
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
@@ -229,61 +231,50 @@ function Lobby() {
       </MenuItem>
     </Menu>
   );
+
   const handleSearchChange = (e) => {
+    console.log(e.target.value);
     setFilter(e.target.value);
     setRoomNumber(
-      rooms.filter(
-        (room) => room.id.indexOf(e.target.value) !== -1 || room.data.roomName.indexOf(e.target.value) !== -1
-      ).length
+      rooms.filter((room) => {
+        return isSubstring(e.target.value, room.id.toString()) || isSubstring(e.target.value, room.data.roomName);
+      }).length
     );
     if (e.target.value === '') {
       setRoomNumber(rooms.length);
     }
   };
 
-  useEffect(
-    () => {
-      // if (themeId) {
-      getRoomsByClass(storage.themeId, (result) => {
-        console.log(result);
-        setRoomNumber(result.length);
-        setRooms(
-          result.map((item) => ({
-            id: item.CRID,
-            data: {
-              roomName: item.CRName,
-              roomScale: item.Capacity
-            }
-          }))
-        );
-      });
-      // db.collection('theme').doc(themeId).collection('rooms').onSnapshot((snapshot) => {
-      //   setRoomNumber(snapshot.docs.length);
-      //   setRooms(
-      //     snapshot.docs.map((doc) => ({
-      //       id: doc.id,
-      //       data: doc.data()
-      //     }))
-      //   );
-      // });
-      // }
-    },
-    []
-  );
+  useEffect(() => {
+    // if (themeId) {
+    getRoomsByClass(storage.themeId, (result) => {
+      if (!result) result = [];
+      setRoomNumber(result.length);
+      setRooms(
+        result.map((item) => ({
+          id: item.CRID,
+          data: {
+            roomName: item.CRName,
+            roomScale: item.Capacity
+          }
+        }))
+      );
+    });
+  }, []);
 
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-            <IconButton
-              edge="start"
-              className={classes.menuButton}
-              color="inherit"
-              aria-label="open drawer"
-              onClick={toHome}
-            >
-              <HomeIcon />
-            </IconButton>
+          <IconButton
+            edge="start"
+            className={classes.menuButton}
+            color="inherit"
+            aria-label="open drawer"
+            onClick={toHome}
+          >
+            <HomeIcon />
+          </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
             Chat
           </Typography>
@@ -295,9 +286,9 @@ function Lobby() {
               placeholder="Search…"
               classes={{
                 root: classes.inputRoot,
-                input: classes.inputInput,
+                input: classes.inputInput
               }}
-              inputProps={{ 'aria-label': 'search' }}
+              inputProps={{'aria-label': 'search'}}
               onChange={handleSearchChange}
             />
           </div>
@@ -335,9 +326,9 @@ function Lobby() {
       {renderMenu}
       <div className={classes.room}>
         <Grid container>
-          {rooms.map(({ id, data: { roomName, roomScale } }) =>
+          {rooms.map(({id, data: {roomName, roomScale}}) =>
             Children.toArray(
-              (roomName.includes(filter) || id.includes(filter)) && (
+              (isSubstring(filter, roomName) || isSubstring(filter, id.toString())) && (
                 <Grid item xs={6}>
                   {/* <TinderCard
                             preventSwipe={["up","down"]}
