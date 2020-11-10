@@ -43,6 +43,7 @@ function Chat() {
         date: new Date().toLocaleTimeString()
       });
       setMessages(newMessages);
+      setInput(' ');
       setInput('');
       /**
          * 返回的 message 对象包括发送的所有内容
@@ -97,11 +98,14 @@ function Chat() {
       <div className="chat_input">
         <form>
           <input value={input} onChange={(e) => setInput(e.target.value)} placeholder="iMessage" type="text" />
-          <button onClick={handleClickSendMessage}>Send Message</button>
         </form>
-        <IconButton>
-          <MicNoneIcon className="chat_mic" />
-        </IconButton>
+        <Button
+          style={{color: 'white', backgroundColor: '#3F51B5', borderRadius: '15px'}}
+          onClick={handleClickSendMessage}
+          className="chat_mic"
+        >
+          发送
+        </Button>
       </div>
     </div>
   );

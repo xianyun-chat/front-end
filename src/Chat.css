@@ -50,10 +50,10 @@
     width: 98%;
     outline-width: 0;
     border: 1px solid lightgray;
-    border-radius: 999px;
+    border-radius: 15px;
     padding: 5px;
 }
 
-.chat_input>form>button {
-    display: none;
+.chat_mic {
+    height: 6vh;
 }

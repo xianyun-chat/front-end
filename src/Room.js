@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     margin: '20px auto 10px',
-    fontSize: '0.5em'
+    fontSize: '0.8em'
   },
   roomName: {
     fontSize: '1.2em',
@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'left'
   },
   roomInfo: {
-    fontSize: '0.6em',
+    fontSize: '0.8em',
     paddingLeft: '10px',
     textAlign: 'left'
   }
