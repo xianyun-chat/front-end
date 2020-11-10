@@ -36,6 +36,7 @@ function Header() {
     setAnchorEl(event.currentTarget);
   };
   const logout = () => {
+    window.localStorage.setItem('roomId', null);
     window.location.href = '/app/xianyun-chat/#/';
   };
   const toPw = () => {
