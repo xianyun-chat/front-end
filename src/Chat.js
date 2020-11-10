@@ -34,12 +34,14 @@ function Chat() {
     console.log(roomId, userId);
     // 历史记录
     getMessageHistory(roomId, 50, (result) => {
-      history = result.map(({UID, Content}) => {
-        return {
-          id: UID,
-          message: Content
-        };
-      });
+      if (result) {
+        history = result.map(({UID, Content}) => {
+          return {
+            id: UID,
+            message: Content
+          };
+        });
+      }
     });
     // 接受消息，根据返回的消息决定展示与否，如何展示
     socket.on('serverToClient', (message) => {
