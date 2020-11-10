@@ -59,7 +59,7 @@ function Home() {
         <Button>
           <img
             className="star"
-            src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1100&q=60"
+            src={require("./images/home.jpg")}
             alt=""
           />
           <p>住</p>
@@ -70,7 +70,7 @@ function Home() {
         <Button onClick={traceThemeIdTwo}>
           <img
             className="star"
-            src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=60"
+            src={require("./images/food.jpg")}
             alt=""
           />
           <p>食</p>
@@ -81,7 +81,7 @@ function Home() {
         <Button onClick={traceThemeIdThree}>
           <img
             className="star"
-            src="https://images.unsplash.com/photo-1516762689617-e1cffcef479d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=60"
+            src={require("./images/clothing.jpg")}
             alt=""
           />
           <p>衣</p>
@@ -92,7 +92,7 @@ function Home() {
         <Button onClick={traceThemeIdFour}>
           <img
             className="star"
-            src="https://images.unsplash.com/photo-1510410493114-38f0a17d66ef?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=60"
+            src={require("./images/go.jpg")}
             alt=""
           />
           <p>行</p>
@@ -102,7 +102,7 @@ function Home() {
         <Button onClick={traceThemeIdFive}>
           <img
             className="star"
-            src="https://images.unsplash.com/photo-1481328101413-1eef25cc76c0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=60"
+            src={require("./images/entertainment.jpg")}
             alt=""
           />
           <p>娱乐</p>
